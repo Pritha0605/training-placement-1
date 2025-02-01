@@ -1,0 +1,12 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        h = {}
+        for i in strs:
+            c = [0] * 26
+            for j in i:
+                c[ord(j) - ord("a")] += 1
+            if tuple(c) not in h:
+                h[tuple(c)] = [i]
+            else:
+                h[tuple(c)].append(i)
+        return list(h.values())
