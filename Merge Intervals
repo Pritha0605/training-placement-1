@@ -1,0 +1,23 @@
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        if len(intervals) == 1:
+            return intervals
+        
+        intervals.sort()         #list is sorted on the first element of each element
+        interval = 0
+        
+        while interval < len(intervals) - 1:
+            start1,end1 = intervals[interval]
+            start2,end2 = intervals[interval + 1]
+            if end1 >= start2:
+                if end1 < end2:            #to check the case if any of the compared elements is a subset of the other element
+                    intervals[interval] = [start1,end2]
+                intervals.pop(interval + 1)         #since we are updating the first compared element, we pop the second element as we already have the updated interval.
+            else:
+                interval += 1       #incremented only if the 2 elements are disjoint.
+        
+        return intervals
