@@ -1,0 +1,16 @@
+class Solution(object):
+    def canJump(self, nums):
+
+        last_index_True = len(nums)-1
+        for i in range(len(nums)-1, -1, -1):
+            if nums[i]-(last_index_True-i)>=0:
+                last_index_True=i
+
+        if last_index_True==0:
+            return True
+        else:
+            return False
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
